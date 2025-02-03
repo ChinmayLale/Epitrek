@@ -1,68 +1,39 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {
-   View,
-   Text,
-   SafeAreaView,
-   TouchableOpacity,
-   StyleSheet,
-   StatusBar,
-} from 'react-native';
+import {SafeAreaView, TouchableOpacity, StatusBar, View} from 'react-native';
+import {Text} from 'tamagui';
+import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 
 const SplashScreen = () => {
    const navigation = useNavigation();
+
    return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView className="flex-1">
          <StatusBar
             translucent={true}
             backgroundColor="transparent"
             barStyle="light-content"
          />
 
-         <View style={[styles.innerContainer]}>
+         <View className="flex-1 justify-center items-center bg-black">
             <FastImage
-               style={styles.image}
+               style={{width: '100%', height: '100%', position: 'absolute' , zIndex:0}}
                source={{uri: 'https://picsum.photos/800/1200'}}
+               resizeMode={FastImage.resizeMode.cover}
             />
 
-            <TouchableOpacity
-               style={styles.button}
-               onPress={() => {
-                  navigation.navigate('Home');
-               }}>
-               <Text>Click Here</Text>
-            </TouchableOpacity>
+            <View className="absolute flex-1 justify-center items-center z-10">
+               <Text className="text-white text-3xl">Welcome to My App</Text>
+
+               <TouchableOpacity
+                  onPress={() => navigation.navigate('Home')}
+                  className="absolute bottom-10 px-8 py-4 bg-white rounded-lg">
+                  <Text className="text-black text-lg">Get Started</Text>
+               </TouchableOpacity>
+            </View>
          </View>
       </SafeAreaView>
    );
 };
-
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   innerContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-   },
-   image: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute', // Make the image cover the entire screen
-      top: 0,
-   },
-   button: {
-      position: 'absolute',
-      bottom: 20,
-      padding: 10,
-      backgroundColor: 'white',
-      borderRadius: 5,
-   },
-});
 
 export default SplashScreen;
