@@ -6,18 +6,17 @@ import MainNavigator from './MainNavigator';
 export default function RootNavigator() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // Simulate checking auth status (replace with actual auth logic)
-    setTimeout(() => setIsAuthenticated(true), 50000);
-  }, []);
+  // useEffect(() => {
+  //   // Simulate checking auth status (replace with actual auth logic)
+  //   setTimeout(() => setIsAuthenticated(true), 50000);
+  // }, []);
 
   return (
     <NavigationContainer>
-      {/* {isAuthenticated ?  */}
-         <MainNavigator /> 
-         {/* : 
+       {isAuthenticated ?
+         <MainNavigator /> :
          <AuthNavigator />
-      } */}
+       }
     </NavigationContainer>
   );
 }
